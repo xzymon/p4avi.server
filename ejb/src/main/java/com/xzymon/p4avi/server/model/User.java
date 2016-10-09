@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table(name="UZYTK",schema="aviprod")
 public class User {
@@ -27,6 +29,9 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", version=" + version + ", name=" + name + "]";
+	}
 }

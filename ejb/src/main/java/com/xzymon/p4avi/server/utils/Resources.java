@@ -2,6 +2,11 @@ package com.xzymon.p4avi.server.utils;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.jboss.as.controller.client.ModelControllerClient;
 import org.jboss.as.controller.client.OperationBuilder;
@@ -24,7 +29,11 @@ public class Resources {
 	
 	private static final String LOCALHOST = "127.0.0.1";
 	private static final int DEFAULT_ADMIN_PORT = 9999;
-
+	
+	private static final String EMF_PROD_NAME = "aviprod";
+	
+	private static EntityManagerFactory emfPROD;
+	
 	public static void createDataSource() throws Exception {
 		ModelNode modelNode = new ModelNode();
 		modelNode.get(ClientConstants.OP).set(ClientConstants.ADD);
@@ -40,6 +49,15 @@ public class Resources {
 		ModelControllerClient client = ModelControllerClient.Factory.create(InetAddress.getByName(LOCALHOST), DEFAULT_ADMIN_PORT);
 		client.execute(new OperationBuilder(modelNode).build());
 
+	}
+
+	public static EntityManagerFactory getEntityManagerFactoryProdInstance() {
+		Map<String, Object> configOverrides = new HashMap<String, Object>();
+		if(emfPROD!=null){
+			return emfPROD;
+		}
+		emfPROD = Persistence.createEntityManagerFactory(EMF_PROD_NAME, configOverrides);
+		return emfPROD;
 	}
 
 	public boolean checkIfDatasourceExists() throws Exception {
@@ -61,4 +79,5 @@ public class Resources {
 		return false;
 	}
 
+	
 }

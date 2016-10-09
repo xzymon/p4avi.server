@@ -1,6 +1,10 @@
 package com.xzymon.p4avi.server.sb;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.xzymon.p4avi.server.model.User;
+import com.xzymon.p4avi.server.utils.Resources;
 
 /**
  * Session Bean implementation class UserBean
@@ -37,14 +42,6 @@ import com.xzymon.p4avi.server.model.User;
 public class UserBean implements UserRemote, UserLocal {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserBean.class);
 
-	private static final String EMF_NAME = "aviprod";
-
-	@PersistenceUnit(unitName = EMF_NAME)
-	private EntityManagerFactory emf;
-
-	@Resource
-	private UserTransaction utx;
-
 	/**
 	 * Default constructor.
 	 */
@@ -54,46 +51,37 @@ public class UserBean implements UserRemote, UserLocal {
 
 	@Override
 	public List<User> getUsers() {
-		showEMFPropertiesMap();
 
 		EntityManager em = getEntityManager();
 		TypedQuery<User> usersQuery = em.createQuery("from User", User.class);
 		List<User> users = usersQuery.getResultList();
 
+		LOGGER.info("users.size = " + users.size());
+		for(User user: users){
+			LOGGER.info(user.toString());
+		}
+		
 		return users;
 	}
 
 	@Override
 	public String addUser(String name) {
-		showEMFPropertiesMap();
 		EntityManager em = getEntityManager();
 		User user = new User();
 		user.setName(name);
 		try {
-			utx.begin();
-			em.joinTransaction();
-			// em.getTransaction().begin();
+			//utx.begin();
+			//em.joinTransaction();
+			em.getTransaction().begin();
+			LOGGER.info("Formalnie transakcja jest rozpoczęta - czy na pewno? :" + em.getTransaction().isActive());
 			em.persist(user);
-			utx.commit();
-		} catch (NotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			em.getTransaction().commit();
+			LOGGER.info("Formalnie transakcja jest zakończona - czy na pewno? :" + em.getTransaction().isActive());
+			//utx.commit();
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HeuristicMixedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HeuristicRollbackException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -103,19 +91,26 @@ public class UserBean implements UserRemote, UserLocal {
 		return "User probably persisted";
 	}
 
-	private void showEMFPropertiesMap() {
-		Map<String, Object> emfPropertiesMap = emf.getProperties();
+	public void showEMFPropertiesMap() {
+		Map<String, Object> emfPropertiesMap = Resources.getEntityManagerFactoryProdInstance().getProperties();
 		// Map<String, Object> emfPropertiesMap =
 		// getEntityManagerFactory().getProperties();
+		String[] array = new String[emfPropertiesMap.size()];
+		List<String> sortedMapKeys = Arrays.asList(emfPropertiesMap.keySet().toArray(array));
+		Collections.sort(sortedMapKeys);
 		LOGGER.info("About to get properties for User EMF");
-		for (Map.Entry<String, Object> property : emfPropertiesMap.entrySet()) {
-			LOGGER.info(property.getKey() + "=" + property.getValue());
+		Iterator<String> sortedKeysIterator = sortedMapKeys.iterator();
+		String key, value;
+		while(sortedKeysIterator.hasNext()){
+			key = sortedKeysIterator.next();
+			value = (String) emfPropertiesMap.get(key);
+			LOGGER.info(key + "=" + value);
 		}
 		LOGGER.info("After getting properties for User EMF");
 	}
 
 	private EntityManager getEntityManager() {
-		EntityManagerFactory emf = getEntityManagerFactory();
+		EntityManagerFactory emf = Resources.getEntityManagerFactoryProdInstance();
 		if (emf == null) {
 			throw new RuntimeException("emf is null!");
 		}
@@ -123,12 +118,6 @@ public class UserBean implements UserRemote, UserLocal {
 		EntityManager em = emf.createEntityManager();
 		LOGGER.info("new EntityManager instance acquired SUCCESSFULLY!");
 		return em;
-	}
-
-	private EntityManagerFactory getEntityManagerFactory() {
-		Map<String, Object> configOverrides = new HashMap<String, Object>();
-
-		return Persistence.createEntityManagerFactory(EMF_NAME, configOverrides);
 	}
 
 }
