@@ -19,21 +19,21 @@
 	<!-- The datasource is bound into JNDI at this location. We reference this 
 		in META-INF/persistence.xml -->
 	<datasource jndi-name="java:jboss/datasources/aviprodDS"
-		pool-name="aviprod_on_pdborcl" enabled="true" use-java-context="true">
-		<connection-url>jdbc:oracle:thin:@192.168.1.102:1521/pdborcl.xoracle</connection-url>
-		<driver>oracle</driver>
+		pool-name="aviprod_on_mysql" enabled="true" use-java-context="true">
+		<connection-url>jdbc:mysql://127.0.0.1:3306/aviprod?autoReconnect=true&amp;useSSL=false</connection-url>
+		<driver>mysql</driver>
 		<security>
-			<user-name>aviprod</user-name>
-			<password>aviprodp4$$</password>
+			<user-name>prod1</user-name>
+			<password>aviprod</password>
 		</security>
 	</datasource>
 	<datasource jndi-name="java:jboss/datasources/aviextrDS"
-		pool-name="aviextr_on_pdborcl" enabled="true" use-java-context="true">
-		<connection-url>jdbc:oracle:thin:@192.168.1.102:1521/pdborcl.xoracle</connection-url>
-		<driver>oracle</driver>
+		pool-name="aviextr_on_mysql" enabled="true" use-java-context="true">
+		<connection-url>jdbc:mysql://127.0.0.1:3306/aviextr?autoReconnect=true&amp;useSSL=false</connection-url>
+		<driver>mysql</driver>
 		<security>
-			<user-name>aviextr</user-name>
-			<password>aviextrp4$$</password>
+			<user-name>extr1</user-name>
+			<password>aviextr</password>
 		</security>
 	</datasource>
 </datasources>

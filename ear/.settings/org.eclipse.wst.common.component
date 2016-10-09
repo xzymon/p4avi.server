@@ -8,5 +8,44 @@
         <dependent-module archiveName="server-ejb.jar" deploy-path="/" handle="module:/resource/server-ejb/server-ejb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jta.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/transaction/jta/1.1/jta-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/slf4j/slf4j-api/1.7.2.redhat-3/slf4j-api-1.7.2.redhat-3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-as-controller-client.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/as/jboss-as-controller-client/7.5.0.Final-redhat-21/jboss-as-controller-client-7.5.0.Final-redhat-21.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-as-protocol.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/as/jboss-as-protocol/7.5.0.Final-redhat-21/jboss-as-protocol-7.5.0.Final-redhat-21.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-marshalling.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/marshalling/jboss-marshalling/1.4.10.Final-redhat-1/jboss-marshalling-1.4.10.Final-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-remoting.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/remoting3/jboss-remoting/3.3.4.Final-redhat-1/jboss-remoting-3.3.4.Final-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-sasl.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/sasl/jboss-sasl/1.0.5.Final-redhat-1/jboss-sasl-1.0.5.Final-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xnio-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/xnio/xnio-api/3.0.13.GA-redhat-1/xnio-api-3.0.13.GA-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xnio-nio.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/xnio/xnio-nio/3.0.13.GA-redhat-1/xnio-nio-3.0.13.GA-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-dmr.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/jboss-dmr/1.2.2.Final-redhat-1/jboss-dmr-1.2.2.Final-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-logging.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/logging/jboss-logging/3.1.4.GA-redhat-2/jboss-logging-3.1.4.GA-redhat-2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-threads.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/threads/jboss-threads/2.1.2.Final-redhat-1/jboss-threads-2.1.2.Final-redhat-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-as-build-config.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/as/jboss-as-build-config/7.5.0.Final-redhat-21/jboss-as-build-config-7.5.0.Final-redhat-21.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

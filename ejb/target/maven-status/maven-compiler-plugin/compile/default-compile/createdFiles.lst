@@ -1,2 +1,13 @@
+com/xzymon/p4avi/server/sb/UserLocal.class
+com/xzymon/p4avi/server/sb/CommentLocal.class
+com/xzymon/p4avi/server/sb/UserBean.class
+com/xzymon/p4avi/server/sb/CommentRemote.class
 com/xzymon/p4avi/server/model/User.class
+com/xzymon/p4avi/server/sb/UserBase.class
+com/xzymon/p4avi/server/controller/UserController.class
+com/xzymon/p4avi/server/sb/CommentBase.class
 com/xzymon/p4avi/server/model/Comment.class
+com/xzymon/p4avi/server/sb/CommentBean.class
+com/xzymon/p4avi/server/controller/CommentController.class
+com/xzymon/p4avi/server/utils/Resources.class
+com/xzymon/p4avi/server/sb/UserRemote.class
