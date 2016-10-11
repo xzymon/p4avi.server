@@ -26,6 +26,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import org.infinispan.manager.EmbeddedCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,11 @@ import com.xzymon.p4avi.server.utils.Resources;
 public class UserBean implements UserRemote, UserLocal {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserBean.class);
 
+	/*
+	@Resource(lookup = "java:jboss/infinispan/container/aviCache")
+	private EmbeddedCacheManager cacheContainer;
+	*/
+	
 	/**
 	 * Default constructor.
 	 */
@@ -119,5 +125,5 @@ public class UserBean implements UserRemote, UserLocal {
 		LOGGER.info("new EntityManager instance acquired SUCCESSFULLY!");
 		return em;
 	}
-
+	
 }

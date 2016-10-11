@@ -1,5 +1,6 @@
 package com.xzymon.p4avi.server.model;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +9,12 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.infinispan.loaders.CacheLoaderMetadata;
+
 @XmlRootElement
 @Entity
 @Table(name="UZYTK",schema="aviprod")
+@Cacheable
 public class User {
 	@Id
 	@GeneratedValue

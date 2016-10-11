@@ -16,7 +16,7 @@
 	<parent>
 		<artifactId>server</artifactId>
 		<groupId>com.xzymon.p4avi</groupId>
-		<version>0.0.3</version>
+		<version>0.0.4</version>
 	</parent>
 
 	<artifactId>server-ejb</artifactId>
@@ -83,6 +83,17 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-core</artifactId>
+			<version>5.2.11.Final-redhat-2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-infinispan</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- Test scope dependencies -->
 		<dependency>

@@ -1,5 +1,6 @@
 package com.xzymon.p4avi.server.sb;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import org.infinispan.manager.EmbeddedCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,6 +42,14 @@ public class CommentBean implements CommentRemote, CommentLocal {
 	
 	@Resource
 	private UserTransaction utx;
+	
+	
+	@Resource(lookup = "java:jboss/infinispan/container/aviCache")
+	private EmbeddedCacheManager cacheContainer;
+	
+	
+	//@Resource
+	//private Cache
 	
     /**
      * Default constructor. 

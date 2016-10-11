@@ -51,8 +51,29 @@ public class Resources {
 
 	}
 
+	private static Map<String, Object> getEMFProdPropertiesMap(){
+		Map<String, Object> emfPropertiesMap = new HashMap<String, Object>();
+		emfPropertiesMap.put("hibernate.bytecode.use_reflection_optimizer", "false");
+		emfPropertiesMap.put("hibernate.cache.infinispan.cachemanager", "java:jboss/infinispan/container/aviCache");
+		emfPropertiesMap.put("hibernate.cache.region.factory_class", "org.hibernate.cache.infinispan.JndiInfinispanRegionFactory");
+		emfPropertiesMap.put("hibernate.cache.use_query_cache", "true");
+		emfPropertiesMap.put("hibernate.cache.use_second_level_cache", "true");
+		emfPropertiesMap.put("hibernate.connection.autocommit", "true");
+		emfPropertiesMap.put("hibernate.connection.datasource", "java:jboss/datasources/aviprodDS");
+		emfPropertiesMap.put("hibernate.connection.release_mode", "auto");
+		emfPropertiesMap.put("hibernate.ejb.discard_pc_on_close", "false");
+		emfPropertiesMap.put("hibernate.hbm2ddl.auto", "create-drop");
+		emfPropertiesMap.put("hibernate.query.jpaql_strict_compliance", "true");
+		emfPropertiesMap.put("hibernate.show_sql", "true");
+		emfPropertiesMap.put("hibernate.transaction.factory_class", "org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory");
+		emfPropertiesMap.put("hibernate.transaction.flush_before_completion", "false");
+		emfPropertiesMap.put("hibernate.use_identifier_rollback", "false");
+		return emfPropertiesMap;
+	}
+	
 	public static EntityManagerFactory getEntityManagerFactoryProdInstance() {
 		Map<String, Object> configOverrides = new HashMap<String, Object>();
+		//Map<String, Object> configOverrides = getEMFProdPropertiesMap();
 		if(emfPROD!=null){
 			return emfPROD;
 		}

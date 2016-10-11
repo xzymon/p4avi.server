@@ -22,7 +22,7 @@
     <parent>
         <artifactId>server</artifactId>
         <groupId>com.xzymon.p4avi</groupId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
 
     <artifactId>server-ear</artifactId>
